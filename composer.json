@@ -1,0 +1,25 @@
+{
+	"name": "hypejunction/hypetrees",
+	"version": "0.0.0",
+	"type": "elgg-plugin",
+	"description": "API for building hierarchical trees of entities",
+	"homepage": "http://hypejunction.com",
+	"keywords": [
+		"elgg", "plugin", "trees", "hierarchies"
+	],
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Ismayil Khayredinov",
+			"email": "info@hypejunction.com"
+		}
+	],
+    "extra": {
+        "installer-name": "hypeTrees"
+    },
+	"require": {
+		"php": ">=7.0",
+		"composer/installers": "~1.0"
+    }
+}
+
