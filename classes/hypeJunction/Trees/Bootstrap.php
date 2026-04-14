@@ -70,8 +70,22 @@ class Bootstrap extends PluginBootstrap {
 	 * @throws \DatabaseException
 	 */
 	public function activate() {
+		// (4.x) run_sql_script() was removed. Execute the install SQL
+		// directly via the doctrine connection. The script consists of
+		// a single CREATE TABLE IF NOT EXISTS statement so running it
+		// repeatedly is safe. The dbprefix is substituted in PHP
+		// because the raw SQL template uses the 'prefix_' literal.
 		$root = dirname(dirname(dirname(dirname(__FILE__))));
-		run_sql_script($root . '/install/mysql.sql');
+		$sql = file_get_contents($root . '/install/mysql.sql');
+		if ($sql === false) {
+			return;
+		}
+		$dbprefix = _elgg_services()->config->dbprefix;
+		$sql = str_replace('prefix_', $dbprefix, $sql);
+		$conn = _elgg_services()->db->getConnection('write');
+		foreach (array_filter(array_map('trim', explode(';', $sql))) as $statement) {
+			$conn->executeStatement($statement);
+		}
 	}
 
 	/**
