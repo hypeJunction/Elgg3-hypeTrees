@@ -5,7 +5,10 @@
 	"description": "API for building hierarchical trees of entities",
 	"homepage": "http://hypejunction.com",
 	"keywords": [
-		"elgg", "plugin", "trees", "hierarchies"
+		"elgg",
+		"plugin",
+		"trees",
+		"hierarchies"
 	],
 	"license": "proprietary",
 	"authors": [
@@ -14,12 +17,20 @@
 			"email": "info@hypejunction.com"
 		}
 	],
-    "extra": {
-        "installer-name": "hypeTrees"
-    },
+	"extra": {
+		"installer-name": "hypeTrees",
+		"elgg-plugin": {
+			"id": "hypetrees"
+		}
+	},
 	"require": {
-		"php": ">=7.0",
-		"composer/installers": "~1.0"
-    }
+		"php": ">=7.4",
+		"composer/installers": "^2.0",
+		"elgg/elgg": "^4.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
+		}
+	}
 }
-
