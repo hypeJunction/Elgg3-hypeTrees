@@ -12,6 +12,9 @@ use Elgg\Database\Update;
 use Elgg\Di\ServiceFacade;
 use ElggEntity;
 
+/**
+ * TreeService class.
+ */
 class TreeService {
 
 	use ServiceFacade;
@@ -26,7 +29,7 @@ class TreeService {
 	/**
 	 * Constructor
 	 *
-	 * @param Database $db
+	 * @param Database $db Database
 	 */
 	public function __construct(Database $db) {
 		$this->db = $db;
@@ -101,7 +104,7 @@ class TreeService {
 			'parent_guid' => $qb->param($parent->guid, ELGG_VALUE_INTEGER),
 			'node_guid' => $qb->param($node->guid, ELGG_VALUE_INTEGER),
 			'weight' => $qb->param($weight, ELGG_VALUE_INTEGER),
-			'title' => $qb->param($node->title ? : '', ELGG_VALUE_STRING),
+			'title' => $qb->param($node->title ?: '', ELGG_VALUE_STRING),
 		]);
 
 		return $this->db->insertData($qb);
@@ -137,7 +140,7 @@ class TreeService {
 	 *
 	 * @return array
 	 */
-	public function getNodesQueryOptions(array $options = [], ElggEntity $root, ElggEntity $parent = null) {
+	public function getNodesQueryOptions(array $options, ElggEntity $root, ElggEntity $parent = null) {
 		$defaults = [
 			'limit' => 0,
 		];
@@ -177,7 +180,7 @@ class TreeService {
 
 		$options = $this->getNodesQueryOptions($options, $root, $parent);
 
-		return elgg_get_entities($options) ? : [];
+		return elgg_get_entities($options) ?: [];
 	}
 
 	/**
@@ -265,7 +268,7 @@ class TreeService {
 	/**
 	 * Get roots a node belongs to
 	 *
-	 * @param ElggEntity $entity Entity
+	 * @param ElggEntity $entity  Entity
 	 * @param array      $options ege* options
 	 * @return ElggEntity[]|int|false
 	 */

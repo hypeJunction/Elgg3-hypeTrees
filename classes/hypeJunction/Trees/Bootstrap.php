@@ -4,6 +4,9 @@ namespace hypeJunction\Trees;
 
 use Elgg\PluginBootstrap;
 
+/**
+ * Bootstrap class.
+ */
 class Bootstrap extends PluginBootstrap {
 
 	/**
@@ -14,7 +17,6 @@ class Bootstrap extends PluginBootstrap {
 	 * @return void
 	 */
 	public function load() {
-
 	}
 
 	/**
@@ -26,7 +28,6 @@ class Bootstrap extends PluginBootstrap {
 	 * @return void
 	 */
 	public function boot() {
-
 	}
 
 	/**
@@ -49,7 +50,6 @@ class Bootstrap extends PluginBootstrap {
 	 * @return void
 	 */
 	public function ready() {
-
 	}
 
 	/**
@@ -60,7 +60,6 @@ class Bootstrap extends PluginBootstrap {
 	 * @return void
 	 */
 	public function shutdown() {
-
 	}
 
 	/**
@@ -80,6 +79,7 @@ class Bootstrap extends PluginBootstrap {
 		if ($sql === false) {
 			return;
 		}
+
 		$dbprefix = _elgg_services()->config->dbprefix;
 		$sql = str_replace('prefix_', $dbprefix, $sql);
 		$conn = _elgg_services()->db->getConnection('write');
@@ -94,7 +94,6 @@ class Bootstrap extends PluginBootstrap {
 	 * @return void
 	 */
 	public function deactivate() {
-
 	}
 
 	/**
@@ -105,6 +104,5 @@ class Bootstrap extends PluginBootstrap {
 	 * @return void
 	 */
 	public function upgrade() {
-
 	}
 }

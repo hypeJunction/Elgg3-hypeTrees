@@ -5,6 +5,9 @@ namespace hypeJunction\Trees;
 use DatabaseException;
 use Elgg\Event;
 
+/**
+ * SyncNodeTitles class.
+ */
 class SyncNodeTitles {
 
 	/**
@@ -12,6 +15,7 @@ class SyncNodeTitles {
 	 *
 	 * @param Event $event Event
 	 *
+	 * @return void
 	 * @throws DatabaseException
 	 */
 	public function __invoke(Event $event) {
@@ -23,6 +27,4 @@ class SyncNodeTitles {
 
 		\hypeJunction\Trees\TreeService::instance()->syncTitle($entity);
 	}
-
-
 }

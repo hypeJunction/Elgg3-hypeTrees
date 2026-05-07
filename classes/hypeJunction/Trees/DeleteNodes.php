@@ -5,6 +5,9 @@ namespace hypeJunction\Trees;
 use DatabaseException;
 use Elgg\Event;
 
+/**
+ * DeleteNodes class.
+ */
 class DeleteNodes {
 
 	/**
@@ -12,6 +15,7 @@ class DeleteNodes {
 	 *
 	 * @param Event $event Event
 	 *
+	 * @return void
 	 * @throws DatabaseException
 	 */
 	public function __invoke(Event $event) {
@@ -23,5 +27,4 @@ class DeleteNodes {
 
 		\hypeJunction\Trees\TreeService::instance()->delete($entity);
 	}
-
 }
