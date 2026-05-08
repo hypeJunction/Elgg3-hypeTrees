@@ -61,19 +61,13 @@ class TreeServiceTest extends IntegrationTestCase {
 		$orphan_ancestors = $this->service->getAncestors($root, $orphan);
 		$this->assertEqualEntities([$root, $orphan], $orphan_ancestors);
 
-		dump('Remove node 1');
-
 		$this->service->removeNode($root, $parent);
-
-		dump('Remove node 2');
 
 		$this->assertFalse($this->service->isNode($root, $node));
 		$this->assertFalse($this->service->isNode($root, $parent));
 
-		$this->service->removeNode($root);
+		$this->service->removeNode($root, $orphan);
 		$this->assertFalse($this->service->isNode($root, $orphan));
-
-		dump('Remove node 3');
 	}
 
 	public function mapEntities($e) {

@@ -128,6 +128,13 @@ class TreeService {
 	 * @throws DatabaseException
 	 */
 	public function removeNode(ElggEntity $root, ElggEntity $node) {
+		// Cascade: remove the node itself, then recursively remove any children
+		// whose parent_guid pointed to this node.
+		$children = $this->getNodes($root, $node);
+		foreach ($children as $child) {
+			$this->removeNode($root, $child);
+		}
+
 		$qb = Delete::fromTable(self::TABLE);
 		$qb->where($qb->merge([
 			$qb->compare('root_guid', '=', $root, ELGG_VALUE_GUID),
@@ -207,7 +214,7 @@ class TreeService {
 
 		foreach ($nodes as $n) {
 			if ($n->guid == $node->guid) {
-				$parent_guid = (int) $node->getVolatileData('select:parent_guid');
+				$parent_guid = (int) $n->getVolatileData('select:parent_guid');
 				break;
 			}
 		}
@@ -265,10 +272,11 @@ class TreeService {
 		$ancestors = [$node];
 
 		$parent = $this->getParentNode($root, $node);
-		while ($parent && $parent->guid != $node->guid) {
+		while ($parent && $parent->guid !== $root->guid) {
 			$ancestors[] = $parent;
 			$parent = $this->getParentNode($root, $parent);
 		}
+		$ancestors[] = $root;
 
 		return array_reverse($ancestors);
 	}
