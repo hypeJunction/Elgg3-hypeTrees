@@ -9,15 +9,12 @@ use Elgg\Database\Insert;
 use Elgg\Database\QueryBuilder;
 use Elgg\Database\Select;
 use Elgg\Database\Update;
-use Elgg\Di\ServiceFacade;
 use ElggEntity;
 
 /**
  * TreeService class.
  */
 class TreeService {
-
-	use ServiceFacade;
 
 	const TABLE = 'trees';
 
@@ -36,10 +33,21 @@ class TreeService {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * Returns the service name used to register this service in the DI container.
+	 *
+	 * @return string
 	 */
 	public static function name() {
 		return 'trees';
+	}
+
+	/**
+	 * Returns the singleton instance from the DI container.
+	 *
+	 * @return self
+	 */
+	public static function instance(): self {
+		return elgg()->get(static::name());
 	}
 
 	/**
