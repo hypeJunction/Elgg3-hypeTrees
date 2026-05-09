@@ -43,10 +43,11 @@ class TreeServiceTest extends IntegrationTestCase {
 
 		$this->assertContainsEntity($node, $nodes);
 		$this->assertEquals(10, $this->service->getWeight($root, $node));
-		$this->assertEquals(11, $this->service->getWeight($root, new \ElggObject()));
+		$non_member = $this->createObject();
+		$this->assertEquals(11, $this->service->getWeight($root, $non_member));
 		$this->assertContainsEntity($orphan, $nodes);
 		$this->assertEquals(5, $this->service->getWeight($root, $orphan));
-		$this->assertEquals(11, $this->service->getWeight($root, new \ElggObject()));
+		$this->assertEquals(11, $this->service->getWeight($root, $non_member));
 
 		$child_nodes = $this->service->getNodes($root, $parent);
 		$this->assertContainsEntity($node, $child_nodes);
