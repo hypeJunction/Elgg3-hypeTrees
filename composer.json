@@ -18,7 +18,7 @@
         }
     ],
     "extra": {
-        "installer-name": "hypeTrees",
+        "installer-name": "hypetrees",
         "elgg-plugin": {
             "id": "hypetrees"
         }
