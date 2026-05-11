@@ -1,6 +1,5 @@
 {
     "name": "hypejunction/hypetrees",
-    "version": "7.0.0",
     "type": "elgg-plugin",
     "description": "API for building hierarchical trees of entities",
     "homepage": "https://github.com/hypeJunction/Elgg3-hypeTrees",
