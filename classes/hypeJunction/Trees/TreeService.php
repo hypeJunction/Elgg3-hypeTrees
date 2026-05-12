@@ -92,7 +92,7 @@ class TreeService {
 		}
 
 		if (!$weight) {
-			$weight = $this->getWeight($root, $node);
+			$weight = $this->getPriority($root, $node);
 		}
 
 		$qb = Insert::intoTable(self::TABLE);

@@ -42,11 +42,11 @@ class TreeServiceTest extends IntegrationTestCase {
 		$nodes = $this->service->getNodes($root);
 
 		$this->assertContainsEntity($node, $nodes);
-		$this->assertEquals(10, $this->service->getWeight($root, $node));
-		$this->assertEquals(11, $this->service->getWeight($root, new \ElggObject()));
+		$this->assertEquals(10, $this->service->getPriority($root, $node));
+		$this->assertEquals(11, $this->service->getPriority($root, new \ElggObject()));
 		$this->assertContainsEntity($orphan, $nodes);
-		$this->assertEquals(5, $this->service->getWeight($root, $orphan));
-		$this->assertEquals(11, $this->service->getWeight($root, new \ElggObject()));
+		$this->assertEquals(5, $this->service->getPriority($root, $orphan));
+		$this->assertEquals(11, $this->service->getPriority($root, new \ElggObject()));
 
 		$child_nodes = $this->service->getNodes($root, $parent);
 		$this->assertContainsEntity($node, $child_nodes);
@@ -76,11 +76,19 @@ class TreeServiceTest extends IntegrationTestCase {
 		dump('Remove node 3');
 	}
 
-	public function mapEntities($e) {
+	/**
+     * @param mixed $e
+     * @return mixed
+     */
+    public function mapEntities($e) {
 		return $e instanceof \ElggEntity ? $e->guid : 0;
 	}
 
-	public function assertEqualEntities($array1, $array2) {
+	/**
+     * @param mixed $array1
+     * @param mixed $array2
+     */
+    public function assertEqualEntities($array1, $array2) {
 		$array1 = (array) $array1;
 		$array2 = (array) $array2;
 
@@ -92,7 +100,11 @@ class TreeServiceTest extends IntegrationTestCase {
 		$this->assertEquals($array1, $array2);
 	}
 
-	public function assertContainsEntity($entity, array $array) {
+	/**
+     * @param mixed $entity
+     * @param array $array
+     */
+    public function assertContainsEntity($entity, array $array) {
 		$map = [$this, 'mapEntities'];
 
 		$array = array_map($map, $array);
@@ -100,7 +112,11 @@ class TreeServiceTest extends IntegrationTestCase {
 		$this->assertContains($entity->guid, $array);
 	}
 
-	public function assertNotContainsEntity($entity, array $array) {
+	/**
+     * @param mixed $entity
+     * @param array $array
+     */
+    public function assertNotContainsEntity($entity, array $array) {
 		$map = [$this, 'mapEntities'];
 
 		$array = array_map($map, $array);
