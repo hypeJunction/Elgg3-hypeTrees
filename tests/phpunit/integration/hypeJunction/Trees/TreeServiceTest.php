@@ -17,7 +17,7 @@ class TreeServiceTest extends IntegrationTestCase {
 	protected $service;
 
 	public function up() {
-		$db = _elgg_services()->publicDb;
+		$db = \_elgg_services()->publicDb;
 		$this->service = new TreeService($db);
 	}
 
