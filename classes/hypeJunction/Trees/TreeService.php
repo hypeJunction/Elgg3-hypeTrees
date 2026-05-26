@@ -195,7 +195,7 @@ class TreeService {
 
 		$options = $this->getNodesQueryOptions($options, $root, $parent);
 
-		return elgg_get_entities($options) ?: [];
+		return \elgg_get_entities($options) ?: [];
 	}
 
 	/**
@@ -301,7 +301,7 @@ class TreeService {
 			]);
 		};
 
-		return elgg_get_entities($options);
+		return \elgg_get_entities($options);
 	}
 
 	/**

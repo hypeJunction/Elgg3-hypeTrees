@@ -80,9 +80,9 @@ class Bootstrap extends PluginBootstrap {
 			return;
 		}
 
-		$dbprefix = _elgg_services()->config->dbprefix;
+		$dbprefix = \_elgg_services()->config->dbprefix;
 		$sql = str_replace('prefix_', $dbprefix, $sql);
-		$conn = _elgg_services()->db->getConnection('write');
+		$conn = \_elgg_services()->db->getConnection('write');
 		foreach (array_filter(array_map('trim', explode(';', $sql))) as $statement) {
 			$conn->executeStatement($statement);
 		}
