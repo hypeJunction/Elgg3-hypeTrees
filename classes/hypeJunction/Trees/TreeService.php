@@ -276,6 +276,7 @@ class TreeService {
 			$ancestors[] = $parent;
 			$parent = $this->getParentNode($root, $parent);
 		}
+
 		$ancestors[] = $root;
 
 		return array_reverse($ancestors);
